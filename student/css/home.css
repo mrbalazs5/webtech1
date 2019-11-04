@@ -1,0 +1,44 @@
+.home-content{
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.welcome-text{
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+p{
+    font-size: 15px;
+}
+
+.list-title{
+    margin: 5px 0;
+    text-decoration: underline;
+}
+
+
+.animated-list{
+    padding: 0 0 0 30px;
+    font-size: 15px;
+    list-style: none;
+}
+
+.animated-list li{
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+    margin: 5px 0;
+}
+.animated-list li:before {
+    content:"• ";
+    display: inline-block;
+    transition: 0.5s;
+    margin-right: 5px;
+    font-size: 22px;
+}
+
+.animated-list li.hovered:before{
+    margin-right: 10px;
+}

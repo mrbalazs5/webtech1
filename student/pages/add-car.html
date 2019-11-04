@@ -1,0 +1,67 @@
+<div>
+    <h1 class="page-title">Add car</h1>
+
+    <form id="add-car" action="POST" class="form">
+
+        <div class="messages"></div>
+
+        <div class="form-item">
+            <label for="name">
+                Name
+                <input type="text" id="name" name="name" autocomplete="false">
+            </label>
+        </div>
+        <div class="form-item">
+            <label for="consumption">
+                Consumption
+                <div class="with-postfix">
+                    <input type="number" id="consumption" name="consumption">
+                    <span class="post-fix">l/100km</span>
+                </div>
+            </label>
+        </div>
+        <div class="form-item">
+            <label for="color">
+                Color
+                <input type="text" id="color" name="color">
+            </label>
+        </div>
+
+        <div class="form-item-wrapper">
+            <div class="form-item">
+                <label for="manufacturer">
+                    Manufacturer
+                    <select id="manufacturer" name="manufacturer"></select>
+                </label>
+            </div>
+            <div class="form-item">
+                <label for="available">
+                    Available
+                    <input type="number" id="available" name="available">
+                </label>
+            </div>
+        </div>
+
+        <div class="form-item-wrapper">
+            <div class="form-item">
+                <label for="year">
+                    Year
+                    <input type="number" id="year" name="year">
+                </label>
+            </div>
+            <div class="form-item">
+                <label for="horsepower">
+                    Horsepower
+                    <input type="number" id="horsepower" name="horsepower">
+                </label>
+            </div>
+        </div>
+
+
+
+        <div class="form-item">
+            <input type="submit" name="submit" id="submit" class="submit-btn">
+        </div>
+
+    </form>
+</div>
