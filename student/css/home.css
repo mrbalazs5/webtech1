@@ -36,9 +36,11 @@ p{
     display: inline-block;
     transition: 0.5s;
     margin-right: 5px;
-    font-size: 22px;
+    font-size: 24px;
+    color: white;
 }
 
 .animated-list li.hovered:before{
     margin-right: 10px;
+    color: #e2641a;
 }

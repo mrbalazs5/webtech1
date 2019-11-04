@@ -1,6 +1,36 @@
 "use strict";
 
+//animations for all pages
 const generalAnimations = function(){
+
+    $('#hamburger').click(function () {
+
+        if($(this).hasClass('open')){
+            $(this).removeClass('open');
+
+            $('ul.menu').fadeOut(500).css({top: '30px'});
+
+        }else{
+            $(this).addClass('open');
+
+            $('ul.menu').fadeIn(500).css({display: 'flex', top: '65px'});
+
+        }
+
+
+    });
+
+    $(window).resize(function () {
+
+        if(window.innerWidth >= 768){
+            $('ul.menu').css({display: 'inline-flex'});
+        }else{
+            $('ul.menu').css({display: 'none'});
+            $('#hamburger').removeClass('open');
+        }
+
+    });
+
     $('.animated-list li').mouseenter(function () {
         $(this).addClass('hovered');
     });
@@ -15,18 +45,31 @@ const generalAnimations = function(){
 
 };
 
+//loads new site content into #root, changes title of the page
 const changeSite = function(url, title, cb){
+
+    const fadeDelay = 500;
+
     $('#root').load(url, function () {
         cb ? cb() : '';
         generalAnimations();
-    });
+    })
+    .hide()
+    .fadeIn(fadeDelay);
+
+    $('footer')
+        .hide()
+        .fadeIn(fadeDelay);
+
     document.title = title;
 };
 
+//creates a new cookie
 const setCookie = function (name, value){
     document.cookie = name + '=' + value + ';path=/manufacturer';
 };
 
+//handles the manufacturer filter on 'Cars' page
 const handleFilterChange = function (){
     $('#filter-cars #cars-manufacturer').change(function () {
         const manufacturer = $(this).val();
@@ -73,6 +116,7 @@ const handleFilterChange = function (){
     });
 };
 
+//get all cars from backend
 const getCars = function () {
 
     $.get('/cars')
@@ -100,6 +144,7 @@ const getCars = function () {
         });
 };
 
+//get all manufacturer names from backend
 const getManufacturerNames = function(cb){
     
     $.get('/manufacturerNames')
@@ -112,6 +157,7 @@ const getManufacturerNames = function(cb){
 
 };
 
+//get all manufacturers from backend
 const getManufacturers = function () {
     $.get('/manufacturers')
         .done(function(manufacturers) {
@@ -134,6 +180,11 @@ const getManufacturers = function () {
         });
 };
 
+/**
+ * validates the given field array
+ * @param Object fields => {value: String, name: String, required: bool, isNumber: bool, min: number, max: number},
+ *
+**/
 const validate = function(fields){
     let errors = [];
 
@@ -176,6 +227,14 @@ const validate = function(fields){
     return errors;
 };
 
+
+/**
+ * validates the given field array
+ * @param DOMObject messageBox
+ * @param string from => changes the message box state from
+ * @param string to => changes the message box state to
+ *
+ **/
 const resetMessageBox = function(messageBox, from, to){
     messageBox
         .removeClass(from)
@@ -186,6 +245,7 @@ const resetMessageBox = function(messageBox, from, to){
     return messageBox;
 };
 
+//handles Add car form
 const handleAddCarForm = function () {
 
     getManufacturerNames(function (manufacturerNames) {
@@ -266,6 +326,7 @@ const handleAddCarForm = function () {
 
 };
 
+//handles Add manufacturer form
 const handleManufacturerForm = function(){
     $('#add-manufacturer').submit(function (e) {
         e.preventDefault();
@@ -328,7 +389,11 @@ const handleManufacturerForm = function(){
     })
 };
 
-//here path is the URL's hash part
+/**
+ * switches site depending on the URL's hash
+ * path is the URL's hash part
+ * @param path
+ */
 const switchSite = function(path){
     switch (path){
         case '':
